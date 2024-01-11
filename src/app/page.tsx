@@ -90,9 +90,11 @@ export default function Home() {
 	useEffect(() => {
 		const lista: { items: TodoListParams[] } = { items: [] };
 
-		const listLocalStorage = JSON.parse(
-			window.localStorage.getItem('todo-lists') || '{ items: [] }',
-		);
+		const localStorage = window.localStorage.getItem('todo-lists');
+
+		const listLocalStorage = localStorage
+			? JSON.parse(localStorage)
+			: { items: [] };
 
 		if (Object.keys(listLocalStorage).length > 0) {
 			lista.items = listLocalStorage.items;
